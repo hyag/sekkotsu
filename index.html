@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>琉球整体院 なごみ — 沖縄の整体・マッサージ</title>
+<meta name="description" content="沖縄県那覇市の整体・マッサージ院。肩こり・腰痛・疲れをやさしくほぐします。">
+<meta name="color-scheme" content="light dark">
+<style>
+:root {
+  --accent:        #7c6a52;
+  --accent-strong: #5c4c3a;
+  --accent-soft:   rgba(124,106,82,.10);
+  --bg:            #faf8f5;
+  --bg-elevated:   #ffffff;
+  --border:        #e8e2d9;
+  --text:          #1e1a14;
+  --text-muted:    #7a6e5f;
+  --radius:        14px;
+  --shadow:        0 1px 3px rgba(30,26,20,.06), 0 8px 24px rgba(30,26,20,.08);
+  --maxw:          720px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:        #c4a97a;
+    --accent-strong: #d4b98a;
+    --accent-soft:   rgba(196,169,122,.12);
+    --bg:            #111009;
+    --bg-elevated:   #1a1814;
+    --border:        #2a2620;
+    --text:          #f0ece6;
+    --text-muted:    #9a9288;
+    --shadow:        0 1px 3px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+               "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, var(--maxw));
+  margin: 0 auto;
+}
+
+/* ナビ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,248,245,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: .8rem 0;
+}
+@media (prefers-color-scheme: dark) {
+  nav { background: rgba(17,16,9,.92); }
+}
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo { font-weight: 700; font-size: 1rem; color: var(--text); text-decoration: none; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { color: var(--text-muted); font-size: .88rem; text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  padding: .4rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s;
+}
+.nav-cta:hover { background: var(--accent-strong); }
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+}
+
+/* ヒーロー */
+.hero {
+  padding: clamp(4rem, 14vw, 7rem) 0 clamp(3rem, 10vw, 5rem);
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  padding: .25rem 1rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+}
+.hero p {
+  margin: 0 auto 2rem;
+  max-width: 30em;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+}
+.hero-btns { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  padding: .85rem 2rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  font-size: .95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s;
+}
+.btn-primary:hover { background: var(--accent-strong); }
+.btn-secondary {
+  padding: .85rem 2rem;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  font-size: .95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color .2s;
+}
+.btn-secondary:hover { border-color: var(--accent); }
+
+/* セクション共通 */
+section { padding-block: clamp(3rem, 10vw, 5rem); }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.section-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.section-title { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 700; margin: 0 0 .6rem; letter-spacing: -.02em; }
+.section-sub { color: var(--text-muted); margin: 0 0 2.5rem; font-size: .95rem; }
+
+/* 特徴 */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.feature-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.3rem;
+  box-shadow: var(--shadow);
+}
+.feature-icon { font-size: 1.8rem; margin-bottom: .8rem; }
+.feature-card h3 { margin: 0 0 .4rem; font-size: 1rem; font-weight: 700; }
+.feature-card p { margin: 0; font-size: .86rem; color: var(--text-muted); line-height: 1.7; }
+
+/* メニュー */
+.menu-list { display: flex; flex-direction: column; gap: .8rem; }
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.4rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.menu-info h3 { margin: 0 0 .2rem; font-size: .98rem; font-weight: 700; }
+.menu-info p { margin: 0; font-size: .82rem; color: var(--text-muted); }
+.menu-price { flex-shrink: 0; text-align: right; }
+.menu-price .price { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+.menu-price .time { font-size: .78rem; color: var(--text-muted); }
+
+/* 予約フォーム */
+#reserve { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.form-wrap { max-width: 520px; margin: 0 auto; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-bottom: .8rem; }
+@media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: .3rem; }
+.field label { font-size: .8rem; font-weight: 600; color: var(--text-muted); }
+.field input,
+.field select,
+.field textarea {
+  padding: .7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: .95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .2s;
+  width: 100%;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: var(--accent); }
+.field.full { grid-column: 1 / -1; }
+.form-note { font-size: .78rem; color: var(--text-muted); margin: .5rem 0 1rem; }
+.btn-submit {
+  width: 100%;
+  padding: .9rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .2s;
+}
+.btn-submit:hover { background: var(--accent-strong); }
+.form-success {
+  text-align: center;
+  padding: 2rem;
+  display: none;
+}
+.form-success .icon { font-size: 2.5rem; margin-bottom: .8rem; }
+.form-success h3 { margin: 0 0 .4rem; }
+.form-success p { color: var(--text-muted); font-size: .9rem; margin: 0; }
+
+/* アクセス */
+.access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 560px) { .access-grid { grid-template-columns: 1fr; } }
+.access-info { display: flex; flex-direction: column; gap: .8rem; }
+.access-item { display: flex; gap: .8rem; align-items: flex-start; font-size: .9rem; }
+.access-item .label { font-weight: 700; min-width: 60px; flex-shrink: 0; }
+.access-item .val { color: var(--text-muted); }
+.map-placeholder {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: .88rem;
+}
+
+/* フッター */
+footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .78rem;
+}
+
+/* フェードイン */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">琉球整体院 なごみ</a>
+      <div class="nav-links">
+        <a href="#features">特徴</a>
+        <a href="#menu">メニュー</a>
+        <a href="#access">アクセス</a>
+      </div>
+      <a class="nav-cta" href="#reserve">予約する</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-badge">沖縄 那覇市の整体院</span>
+    <h1>体のこわばりを、<br>やさしくほぐす。</h1>
+    <p>肩こり・腰痛・疲労回復に。<br>沖縄の伝統的な手技と最新の整体を組み合わせた施術です。</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#reserve">予約する（無料相談あり）</a>
+      <a class="btn-secondary" href="#menu">メニューを見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 特徴 -->
+<section id="features">
+  <div class="wrap">
+    <p class="section-label">Features</p>
+    <h2 class="section-title reveal">なごみが選ばれる理由</h2>
+    <p class="section-sub reveal">通いやすく、体に寄り添う施術を心がけています。</p>
+    <div class="features reveal">
+      <div class="feature-card">
+        <div class="feature-icon">🙌</div>
+        <h3>国家資格保有スタッフ</h3>
+        <p>柔道整復師・あん摩マッサージ指圧師が担当します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>完全個室・完全予約制</h3>
+        <p>他のお客様と顔を合わせずリラックスして受けられます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🕐</div>
+        <h3>当日予約OK</h3>
+        <p>空きがあれば当日のご予約も承っています。お気軽にどうぞ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- メニュー -->
+<section id="menu">
+  <div class="wrap">
+    <p class="section-label">Menu</p>
+    <h2 class="section-title reveal">施術メニュー</h2>
+    <p class="section-sub reveal">すべて税込み価格です。</p>
+    <div class="menu-list reveal">
+      <div class="menu-item">
+        <div class="menu-info">
+          <h3>全身整体コース</h3>
+          <p>全身のバランスを整え、疲れをリセット。</p>
+        </div>
+        <div class="menu-price">
+          <div class="price">¥6,600</div>
+          <div class="time">60分</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-info">
+          <h3>肩こり・首こり集中コース</h3>
+          <p>デスクワークや姿勢の悪さからくるこわばりに。</p>
+        </div>
+        <div class="menu-price">
+          <div class="price">¥4,400</div>
+          <div class="time">40分</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-info">
+          <h3>腰痛改善コース</h3>
+          <p>腰・骨盤まわりを重点的にほぐします。</p>
+        </div>
+        <div class="menu-price">
+          <div class="price">¥5,500</div>
+          <div class="time">50分</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-info">
+          <h3>リラクゼーションマッサージ</h3>
+          <p>心身ともにリフレッシュしたい方に。</p>
+        </div>
+        <div class="menu-price">
+          <div class="price">¥3,300</div>
+          <div class="time">30分</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 予約フォーム -->
+<section id="reserve">
+  <div class="wrap">
+    <p class="section-label">Reserve</p>
+    <h2 class="section-title reveal">ご予約・お問い合わせ</h2>
+    <p class="section-sub reveal">フォームからお気軽にどうぞ。24時間以内にご連絡します。</p>
+    <div class="form-wrap reveal">
+      <form id="reserveForm" action="https://formspree.io/f/xaeqdzdg" method="POST">
+        <div class="form-grid">
+          <div class="field">
+            <label>お名前 *</label>
+            <input type="text" name="name" placeholder="山田 太郎" required>
+          </div>
+          <div class="field">
+            <label>電話番号 *</label>
+            <input type="tel" name="phone" placeholder="090-0000-0000" required>
+          </div>
+          <div class="field">
+            <label>メールアドレス *</label>
+            <input type="email" name="email" placeholder="example@email.com" required>
+          </div>
+          <div class="field">
+            <label>ご希望メニュー</label>
+            <select name="menu">
+              <option value="">選択してください</option>
+              <option>全身整体コース（60分）</option>
+              <option>肩こり・首こり集中コース（40分）</option>
+              <option>腰痛改善コース（50分）</option>
+              <option>リラクゼーションマッサージ（30分）</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>ご希望日時</label>
+            <input type="datetime-local" name="datetime">
+          </div>
+          <div class="field full">
+            <label>ご要望・症状など</label>
+            <textarea name="message" rows="3" placeholder="お体の状態や気になる点をお書きください。"></textarea>
+          </div>
+        </div>
+        <p class="form-note">※ご予約は確定ではありません。スタッフより確認のご連絡をいたします。</p>
+        <button type="submit" class="btn-submit">送信する</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="icon">✅</div>
+        <h3>送信が完了しました</h3>
+        <p>24時間以内にご連絡いたします。しばらくお待ちください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- アクセス -->
+<section id="access">
+  <div class="wrap">
+    <p class="section-label">Access</p>
+    <h2 class="section-title reveal">アクセス</h2>
+    <div class="access-grid reveal">
+      <div class="access-info">
+        <div class="access-item"><span class="label">住所</span><span class="val">沖縄県那覇市牧志2-1-1</span></div>
+        <div class="access-item"><span class="label">営業時間</span><span class="val">10:00〜20:00</span></div>
+        <div class="access-item"><span class="label">定休日</span><span class="val">水曜日</span></div>
+        <div class="access-item"><span class="label">電話</span><span class="val">098-000-0000</span></div>
+        <div class="access-item"><span class="label">駐車場</span><span class="val">2台あり（無料）</span></div>
+      </div>
+      <div class="map-placeholder">📍 地図（実装時はGoogle Maps埋め込み）</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 琉球整体院 なごみ</p>
+  </div>
+</footer>
+
+<script>
+// フォーム送信
+document.getElementById('reserveForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.btn-submit');
+  btn.textContent = '送信中...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      throw new Error();
+    }
+  } catch {
+    btn.textContent = '送信する';
+    btn.disabled = false;
+    alert('送信に失敗しました。時間をおいて再度お試しください。');
+  }
+});
+
+// フェードイン
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
