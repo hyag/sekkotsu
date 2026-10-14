@@ -90,8 +90,26 @@ nav {
 
 /* ヒーロー */
 .hero {
+  /* 施術室の写真を背景に敷き、上に淡い色を重ねて文字を読みやすくする */
+  --hero-veil: linear-gradient(rgba(250,248,245,.55), rgba(250,248,245,.75));
   padding: clamp(4rem, 14vw, 7rem) 0 clamp(3rem, 10vw, 5rem);
   text-align: center;
+  /* 写真を大きめに敷いて右寄せにし、観葉植物を文字の外（左側）に出す */
+  background-image: var(--hero-veil), url("images/hero-room.jpg");
+  background-size: 100% 100%, 160% auto;
+  background-position: 0 0, right 55%;
+  background-repeat: no-repeat;
+}
+@media (max-width: 900px) {
+  /* タブレット幅は写真をさらに大きくして、植物を左へ逃がす */
+  .hero { background-size: 100% 100%, 190% auto; }
+}
+@media (max-width: 600px) {
+  /* スマホは右側（ベッド）だけを見せる */
+  .hero { background-size: 100% 100%, cover; background-position: 0 0, right center; }
+}
+@media (prefers-color-scheme: dark) {
+  .hero { --hero-veil: linear-gradient(rgba(17,16,9,.68), rgba(17,16,9,.82)); }
 }
 .hero-badge {
   display: inline-block;
@@ -168,6 +186,20 @@ section { padding-block: clamp(3rem, 10vw, 5rem); }
   box-shadow: var(--shadow);
 }
 .feature-icon { font-size: 1.8rem; margin-bottom: .8rem; }
+.features-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  object-position: center 66%;
+  margin: 0 0 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+@media (max-width: 600px) {
+  .features-photo { aspect-ratio: 16 / 9; }
+}
 .feature-card h3 { margin: 0 0 .4rem; font-size: 1rem; font-weight: 700; }
 .feature-card p { margin: 0; font-size: .86rem; color: var(--text-muted); line-height: 1.7; }
 
@@ -312,6 +344,8 @@ footer {
     <p class="section-label">Features</p>
     <h2 class="section-title reveal">なごみが選ばれる理由</h2>
     <p class="section-sub reveal">通いやすく、体に寄り添う施術を心がけています。</p>
+    <img class="features-photo reveal" src="images/towel-tea.jpg" width="1200" height="1200"
+         alt="木のサイドテーブルに置かれた白いタオルとやちむんの湯のみ" loading="lazy">
     <div class="features reveal">
       <div class="feature-card">
         <div class="feature-icon">🙌</div>
